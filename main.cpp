@@ -12,7 +12,6 @@ public:
     int gradYear;
     int age;
     int height;
-private:
     string name;
     string username;
     string password;
