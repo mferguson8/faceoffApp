@@ -19,8 +19,10 @@ public:
 
 class Game {
 public:
+    string yourTeam;
     string opponent;
     string location;
+    string time;
     int wins;
     int losses;
 };
@@ -172,25 +174,75 @@ void displayAccount(User& user)
 void calculateWinPercentage(User& user)
 {
     double winPercentage = (double)user.totalWins / (user.totalWins + user.totalLosses);
-    cout << "Win Percentage: " << winPercentage << endl;
+    cout << "Win Percentage: " << winPercentage*100 << "%" << endl;
 }
 
 void makeGame(User& user, vector<Game>& games)
 {
     Game game;
+    int choice;
+    string endGame;
 
-    cout << "Enter opponent: ";
-    cin >> game.opponent;
+    cout << "Would you like to simulate a game, or enter a complete game?" << endl;
+    cout << "1. Simulate" << endl;
+    cout << "2. Enter complete game" << endl;
+    cin >> choice;
 
-    cout << "Enter location: ";
-    cin >> game.location;
+    if(choice == 1){
+        cout << "Enter your team: ";
+        cin >> game.yourTeam;
 
-    cout << "Enter wins: ";
-    cin >> game.wins;
+        cout << "Enter opponent: ";
+        cin >> game.opponent;
 
-    cout << "Enter losses: ";
-    cin >> game.losses;
+        cout << "Enter location: ";
+        cin >> game.location;
 
+        cout << "Enter time: ";
+        cin >> game.time;
+
+        while(endGame != "q"){
+            cout << "Enter q to quit: ";
+            cin >> endGame;
+            if(endGame == "q"){
+                break;
+            }
+            else{
+                cout << "Enter 1 for a faceoff win, 2 for a loss: ";
+                cin >> choice;
+                if(choice == 1){
+                    game.wins++;
+                }
+                else if(choice == 2){
+                    game.losses++;
+                }
+                else{
+                    cout << "Invalid choice!" << endl;
+                }
+            }
+        }
+
+    }
+    if(choice == 2){
+        cout << "Enter your team: ";
+        cin >> game.yourTeam;
+
+        cout << "Enter opponent: ";
+        cin >> game.opponent;
+
+        cout << "Enter location: ";
+        cin >> game.location;
+
+        cout << "Enter time: ";
+        cin >> game.time;
+
+        cout << "Enter wins: ";
+        cin >> game.wins;
+
+        cout << "Enter losses: ";
+        cin >> game.losses;
+    }
+    
     user.totalWins += game.wins;
     user.totalLosses += game.losses;
 
@@ -203,8 +255,10 @@ void viewAllGames(const vector<Game>& games)
 {
     for (const auto& game : games)
     {
+        cout << "Your Team: " << game.yourTeam << endl;
         cout << "Opponent: " << game.opponent << endl;
         cout << "Location: " << game.location << endl;
+        cout << "Time: " << game.time << endl;
         cout << "Wins: " << game.wins << endl;
         cout << "Losses: " << game.losses << endl;
         cout << endl;
