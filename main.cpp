@@ -74,6 +74,7 @@ int main()
         cout << "5. Logout" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
+        cout << endl;
 
         if (choice == 1)
         {
@@ -157,6 +158,7 @@ void login(User& user)
 
 void displayAccount(User& user)
 {
+    cout << "Username: " << user.username << endl;
     cout << "Team: " << user.team << endl;
     cout << "Total Wins: " << user.totalWins << endl;
     cout << "Total Losses: " << user.totalLosses << endl;
@@ -164,8 +166,7 @@ void displayAccount(User& user)
     cout << "Age: " << user.age << endl;
     cout << "Height: " << user.height << endl;
     cout << "Name: " << user.name << endl;
-    cout << "Username: " << user.username << endl;
-    cout << "Password: " << user.password << endl;
+    
 }
 
 void calculateWinPercentage(User& user)
